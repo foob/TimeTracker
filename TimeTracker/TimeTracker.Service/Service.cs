@@ -31,6 +31,7 @@ namespace TimeTracker.Service
         {
             var set = _modelContainer.Set<TEntity>();
             set.Add(entity);
+            
             _modelContainer.SaveChanges();
         }
 

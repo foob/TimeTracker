@@ -38,5 +38,23 @@ namespace TimeTracker.Service.Test
             var booking = service.GetById(1);
             Assert.IsNotNull(booking);
         }
+
+        [TestMethod]
+        public void SaveBooking()
+        {
+            var service = _container.Resolve<IService<Booking>>();
+            var booking = new Booking { BookingDate = DateTime.Now, Duration = 5.4F, Description = "balkasdfkjas döflkasjdf ölakdjf öalskjf"};
+
+            //booking.Project = _container.Resolve<IService<Project>>().GetById(2);
+            //booking.User = _container.Resolve<IService<User>>().GetById(1);
+
+            booking.Project = new Project {Id = 2};
+            booking.User = new User {Id = 1};
+
+            service.Save(booking);
+            Assert.IsNotNull(booking);
+
+        }
+
     }
 }

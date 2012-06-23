@@ -28,7 +28,7 @@ namespace TimeTracker.Data
             set;
         }
 
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
     }

@@ -15,5 +15,15 @@ namespace TimeTracker.Service
         {
         }
 
+        public override void Save(Booking entity)
+        {
+
+            _modelContainer.Set<Project>().Attach(entity.Project);
+            _modelContainer.Set<User>().Attach(entity.User);
+
+            base.Save(entity);
+
+        }
+
     }
 }

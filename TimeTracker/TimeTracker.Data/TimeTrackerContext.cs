@@ -43,23 +43,38 @@ namespace TimeTracker.Data
 
             protected override void OnModelCreating(DbModelBuilder modelBuilder)
             {
-                modelBuilder.Entity<Project>().Map(m =>
-                {
-                    m.MapInheritedProperties();
-                    m.ToTable("Project");
-                });
+                var projectConfig = modelBuilder.Entity<Project>().Map(m =>
+                                                       {
+                                                           m.MapInheritedProperties();
+                                                           m.ToTable("Project");
+                                                       });         
+                //projectConfig.HasMany(p => p.Bookings)
+                //    .WithOptional()
+                //    .HasForeignKey(b => b.Project);
+                
+                //projectConfig.HasMany(p => p.Users)
+                //    .WithOptional()
+                //    .HasForeignKey(user => user.Projects);
 
-                modelBuilder.Entity<Booking>().Map(m =>
+
+                var bookingConfig = modelBuilder.Entity<Booking>().Map(m =>
                 {
                     m.MapInheritedProperties();
                     m.ToTable("Booking");
                 });
 
-                modelBuilder.Entity<User>().Map(m =>
+                bookingConfig.HasRequired(b => b.Project).WithMany(p => p.Bookings).WillCascadeOnDelete(false);
+                bookingConfig.HasRequired(b => b.User).WithMany(u => u.Bookings).WillCascadeOnDelete(false);
+
+                var userConfig = modelBuilder.Entity<User>().Map(m =>
                 {
                     m.MapInheritedProperties();
                     m.ToTable("User");
                 });
+
+                userConfig
+                    .HasMany(user => user.Projects)
+                    .WithMany(p => p.Users).Map(map => map.ToTable("UserProject"));
             }
 
             public DbSet<User> Users

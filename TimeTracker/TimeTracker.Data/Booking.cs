@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimeTracker.Data
@@ -19,36 +20,20 @@ namespace TimeTracker.Data
     [Table("Booking")]
     public class Booking : BaseEntity
     {
-        private User _user;
-        private Project _project;
 
-        public virtual User User
-        {
-            get { return _user; }
-            set
-            {
-                if (!ReferenceEquals(_user, value))
-                {
-                    var previousValue = _user;
-                    _user = value;
-                    //FixupUser(previousValue);
-                }
-            }
-        }
-    
-        public virtual Project Project
-        {
-            get { return _project; }
-            set
-            {
-                if (!ReferenceEquals(_project, value))
-                {
-                    var previousValue = _project;
-                    _project = value;
-                    //FixupProject(previousValue);
-                }
-            }
-        }
+        public Booking() { }
+
+        [Required]
+        public DateTime BookingDate { get; set; }
+        
+        [Required]
+        public float Duration { get; set; }
+        
+        public string Description { get; set; }
+
+        public virtual User User { get; set; }
+
+        public virtual Project Project { get; set; }
         
 
     }

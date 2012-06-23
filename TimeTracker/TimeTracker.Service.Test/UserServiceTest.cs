@@ -34,7 +34,7 @@ namespace TimeTracker.Service.Test
 		public void GetByIdWithContainerTest()
 		{
 			var service = _container.Resolve<IService<User>>();
-			var user = service.GetById(2);
+			var user = service.GetById(5);
 			Assert.IsNotNull(user);
 		}
 
