@@ -15,7 +15,7 @@ namespace TimeTracker.Service
         {
             container.Register(Component.For<TimeTrackerDataModelContainer>());
             container.Register(Component.For<IService<Project>>().ImplementedBy<ProjectService>().LifeStyle.Transient);
-
+            container.Register(Component.For<IService<Booking>>().ImplementedBy<BookingService>().LifeStyle.Transient);
         }
     }
 }

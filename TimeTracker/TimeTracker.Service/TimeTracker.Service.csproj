@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingService.cs" />
     <Compile Include="ContainerInstaller.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="ProjectService.cs" />
