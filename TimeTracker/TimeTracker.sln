@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Web", "TimeTracker.Web\TimeTracker.Web.csproj", "{07A099CA-E136-4415-9645-A9852A618A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Data", "TimeTracker.Data\TimeTracker.Data.csproj", "{D66B30AF-CDA3-4955-B965-F3F262DE85A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Service", "TimeTracker.Service\TimeTracker.Service.csproj", "{52609EA3-20AB-4BD2-A2FD-2605FF62427F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07A099CA-E136-4415-9645-A9852A618A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A099CA-E136-4415-9645-A9852A618A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A099CA-E136-4415-9645-A9852A618A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A099CA-E136-4415-9645-A9852A618A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D66B30AF-CDA3-4955-B965-F3F262DE85A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D66B30AF-CDA3-4955-B965-F3F262DE85A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D66B30AF-CDA3-4955-B965-F3F262DE85A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D66B30AF-CDA3-4955-B965-F3F262DE85A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
