@@ -7,7 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Data", "TimeTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Service", "TimeTracker.Service\TimeTracker.Service.csproj", "{52609EA3-20AB-4BD2-A2FD-2605FF62427F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Service.Test", "TimeTracker.Service.Test\TimeTracker.Service.Test.csproj", "{4E559AEE-4453-4A55-B73C-CCB92EF8E718}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9782BDE9-088B-4445-9099-924E60AEEB0E}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TimeTracker.vsmdi = TimeTracker.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TimeTracker.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -25,6 +37,10 @@ Global
 		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52609EA3-20AB-4BD2-A2FD-2605FF62427F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E559AEE-4453-4A55-B73C-CCB92EF8E718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E559AEE-4453-4A55-B73C-CCB92EF8E718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E559AEE-4453-4A55-B73C-CCB92EF8E718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E559AEE-4453-4A55-B73C-CCB92EF8E718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
