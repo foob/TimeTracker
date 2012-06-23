@@ -42,18 +42,6 @@ namespace TimeTracker.Data
     
         #region ObjectSet Properties
     
-        public ObjectSet<User> User
-        {
-            get { return _user  ?? (_user = CreateObjectSet<User>("User")); }
-        }
-        private ObjectSet<User> _user;
-    
-        public ObjectSet<Booking> Booking
-        {
-            get { return _booking  ?? (_booking = CreateObjectSet<Booking>("Booking")); }
-        }
-        private ObjectSet<Booking> _booking;
-    
         public ObjectSet<BaseEntity> BaseEntities
         {
             get { return _baseEntities  ?? (_baseEntities = CreateObjectSet<BaseEntity>("BaseEntities")); }

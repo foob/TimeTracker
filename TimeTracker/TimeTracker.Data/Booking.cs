@@ -15,17 +15,8 @@ using System.Collections.Specialized;
 
 namespace TimeTracker.Data
 {
-    public partial class Booking
+    public partial class Booking : BaseEntity
     {
-        #region Primitive Properties
-    
-        public virtual int Id
-        {
-            get;
-            set;
-        }
-
-        #endregion
         #region Navigation Properties
     
         public virtual User User
