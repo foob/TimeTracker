@@ -2,6 +2,9 @@ using System.Data.Objects;
 
 namespace TimeTracker.Data
 {
+    /// <summary>
+    /// Foo:Bar
+    /// </summary>
     public interface ITimeTrackerDataModelContainer
     {
         /// <summary>
