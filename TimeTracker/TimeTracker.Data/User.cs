@@ -1,25 +1,22 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimeTracker.Data
 {
-    [Table("Booking")]
+    [Table("User")]
     public partial class User : BaseEntity
     {
-        private ICollection<Booking> _bookings;
-        private ICollection<Project> _projects;
+        public User()
+        {
+            Bookings = new Collection<Booking>();
+            Projects = new Collection<Project>();
+        }
 
-        public virtual ICollection<Booking> Bookings
-        {
-            get { return _bookings; }
-            set { _bookings = value; }
-        }
-        
-    
-        public virtual ICollection<Project> Projects
-        {
-            get { return _projects; }
-            set { _projects = value; }
-        }
+        public string AccountName { get; set; }
+
+        public virtual ICollection<Booking> Bookings{ get; set; }
+        public virtual ICollection<Project> Projects{ get; set; }
+
     }
 }
