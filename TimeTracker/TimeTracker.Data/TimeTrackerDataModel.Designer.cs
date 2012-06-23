@@ -75,76 +75,76 @@ namespace TimeTracker.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<User> Users
+        public ObjectSet<User> User
         {
             get
             {
-                if ((_Users == null))
+                if ((_User == null))
                 {
-                    _Users = base.CreateObjectSet<User>("Users");
+                    _User = base.CreateObjectSet<User>("User");
                 }
-                return _Users;
+                return _User;
             }
         }
-        private ObjectSet<User> _Users;
+        private ObjectSet<User> _User;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Project> Projects
+        public ObjectSet<Project> Project
         {
             get
             {
-                if ((_Projects == null))
+                if ((_Project == null))
                 {
-                    _Projects = base.CreateObjectSet<Project>("Projects");
+                    _Project = base.CreateObjectSet<Project>("Project");
                 }
-                return _Projects;
+                return _Project;
             }
         }
-        private ObjectSet<Project> _Projects;
+        private ObjectSet<Project> _Project;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Booking> Bookings
+        public ObjectSet<Booking> Booking
         {
             get
             {
-                if ((_Bookings == null))
+                if ((_Booking == null))
                 {
-                    _Bookings = base.CreateObjectSet<Booking>("Bookings");
+                    _Booking = base.CreateObjectSet<Booking>("Booking");
                 }
-                return _Bookings;
+                return _Booking;
             }
         }
-        private ObjectSet<Booking> _Bookings;
+        private ObjectSet<Booking> _Booking;
 
         #endregion
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the User EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsers(User user)
+        public void AddToUser(User user)
         {
-            base.AddObject("Users", user);
+            base.AddObject("User", user);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Projects EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToProjects(Project project)
+        public void AddToProject(Project project)
         {
-            base.AddObject("Projects", project);
+            base.AddObject("Project", project);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Bookings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Booking EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToBookings(Booking booking)
+        public void AddToBooking(Booking booking)
         {
-            base.AddObject("Bookings", booking);
+            base.AddObject("Booking", booking);
         }
 
         #endregion
@@ -303,10 +303,16 @@ namespace TimeTracker.Data
         /// Create a new Project object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Project CreateProject(global::System.Int32 id)
+        /// <param name="number">Initial value of the Number property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        public static Project CreateProject(global::System.Int32 id, global::System.String number, global::System.String name, global::System.String description)
         {
             Project project = new Project();
             project.Id = id;
+            project.Number = number;
+            project.Name = name;
+            project.Description = description;
             return project;
         }
 
@@ -339,6 +345,78 @@ namespace TimeTracker.Data
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Number
+        {
+            get
+            {
+                return _Number;
+            }
+            set
+            {
+                OnNumberChanging(value);
+                ReportPropertyChanging("Number");
+                _Number = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Number");
+                OnNumberChanged();
+            }
+        }
+        private global::System.String _Number;
+        partial void OnNumberChanging(global::System.String value);
+        partial void OnNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
 
         #endregion
     

@@ -4,29 +4,127 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="TimeTrackerDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="TimeTrackerDataModelTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="TimeTrackerDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TimeTrackerDataModelStoreContainer">
+    <EntitySet Name="User" EntityType="TimeTrackerDataModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Project" EntityType="TimeTrackerDataModel.Store.Project" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Booking" EntityType="TimeTrackerDataModel.Store.Booking" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProject" EntityType="TimeTrackerDataModel.Store.UserProject" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserBooking" Association="TimeTrackerDataModel.Store.UserBooking">
+      <End Role="User" EntitySet="User" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProject_User" Association="TimeTrackerDataModel.Store.FK_UserProject_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserProject" EntitySet="UserProject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProject_Project" Association="TimeTrackerDataModel.Store.FK_UserProject_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="UserProject" EntitySet="UserProject" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectBooking" Association="TimeTrackerDataModel.Store.ProjectBooking">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Project_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProject">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Projects_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Projects_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserBooking">
+    <End Role="User" Type="TimeTrackerDataModel.Store.User" Multiplicity="1" />
+    <End Role="Booking" Type="TimeTrackerDataModel.Store.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectBooking">
+    <End Role="Project" Type="TimeTrackerDataModel.Store.Project" Multiplicity="1" />
+    <End Role="Booking" Type="TimeTrackerDataModel.Store.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Project_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProject_User">
+    <End Role="User" Type="TimeTrackerDataModel.Store.User" Multiplicity="1" />
+    <End Role="UserProject" Type="TimeTrackerDataModel.Store.UserProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProject_Project">
+    <End Role="UserProject" Type="TimeTrackerDataModel.Store.UserProject" Multiplicity="*" />
+    <End Role="Project" Type="TimeTrackerDataModel.Store.Project" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="Projects_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TimeTrackerDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="TimeTrackerDataModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="TimeTrackerDataModel.User" />
-          <EntitySet Name="Projects" EntityType="TimeTrackerDataModel.Project" />
-          <EntitySet Name="Bookings" EntityType="TimeTrackerDataModel.Booking" />
+          <EntitySet Name="User" EntityType="TimeTrackerDataModel.User" />
+          <EntitySet Name="Project" EntityType="TimeTrackerDataModel.Project" />
+          <EntitySet Name="Booking" EntityType="TimeTrackerDataModel.Booking" />
           <AssociationSet Name="UserBooking" Association="TimeTrackerDataModel.UserBooking">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
           <AssociationSet Name="UserProject" Association="TimeTrackerDataModel.UserProject">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Project" EntitySet="Projects" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Project" EntitySet="Project" />
           </AssociationSet>
           <AssociationSet Name="ProjectBooking" Association="TimeTrackerDataModel.ProjectBooking">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -44,6 +142,9 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="TimeTrackerDataModel.UserProject" FromRole="Project" ToRole="User" />
           <NavigationProperty Name="Bookings" Relationship="TimeTrackerDataModel.ProjectBooking" FromRole="Project" ToRole="Booking" />
+          <Property Type="String" Name="Number" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -69,13 +170,58 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="TimeTrackerDataModel" />
-        <Alias Key="Target" Value="TimeTrackerDataModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="TimeTrackerDataModelContainer" StorageEntityContainer="TimeTrackerDataModelTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TimeTrackerDataModelStoreContainer" CdmEntityContainer="TimeTrackerDataModelContainer">
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTrackerDataModel.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTrackerDataModel.Project)">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Booking">
+      <EntityTypeMapping TypeName="IsTypeOf(TimeTrackerDataModel.Booking)">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserBooking" TypeName="TimeTrackerDataModel.UserBooking" StoreEntitySet="Booking">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserProject" TypeName="TimeTrackerDataModel.UserProject" StoreEntitySet="UserProject">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="Id" ColumnName="Projects_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProjectBooking" TypeName="TimeTrackerDataModel.ProjectBooking" StoreEntitySet="Booking">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="Id" ColumnName="Project_Id" />
+      </EndProperty>
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
@@ -94,7 +240,7 @@
     <edmx:Diagrams>
       <Diagram Name="TimeTrackerDataModel" >
         <EntityTypeShape EntityType="TimeTrackerDataModel.User" Width="1.5" PointX="4.625" PointY="1" Height="1.0992643229166665" />
-        <EntityTypeShape EntityType="TimeTrackerDataModel.Project" Width="1.5" PointX="2.625" PointY="3.125" Height="1.0992643229166665" />
+        <EntityTypeShape EntityType="TimeTrackerDataModel.Project" Width="1.5" PointX="2.625" PointY="3.125" Height="1.9210009765624996" />
         <EntityTypeShape EntityType="TimeTrackerDataModel.Booking" Width="1.5" PointX="5.625" PointY="3.25" Height="1.0992643229166665" />
         <AssociationConnector Association="TimeTrackerDataModel.UserBooking">
           <ConnectorPoint PointX="5.875" PointY="2.2636116536458335" />
@@ -105,8 +251,8 @@
           <ConnectorPoint PointX="4.125" PointY="3.125" />
         </AssociationConnector>
         <AssociationConnector Association="TimeTrackerDataModel.ProjectBooking">
-          <ConnectorPoint PointX="4.125" PointY="3.9014794921875" />
-          <ConnectorPoint PointX="5.625" PointY="3.9014794921875" />
+          <ConnectorPoint PointX="4.125" PointY="3.9639794921875" />
+          <ConnectorPoint PointX="5.625" PointY="3.9639794921875" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

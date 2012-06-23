@@ -5,6 +5,7 @@ using System.Text;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using TimeTracker.Data;
 
 namespace TimeTracker.Service
 {
@@ -12,7 +13,9 @@ namespace TimeTracker.Service
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            throw new NotImplementedException();
+            container.Register(Component.For<TimeTrackerDataModelContainer>());
+            container.Register(Component.For<IService<Project>>().ImplementedBy<ProjectService>().LifeStyle.Transient);
+
         }
     }
 }
