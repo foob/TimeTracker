@@ -1,0 +1,46 @@
+﻿@model TimeTracker.Web.Models.Booking
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Booking</legend>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProjectId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HoursWorked)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoursWorked)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index", new { projectId = Model.ProjectId })
+    </p>
+}
