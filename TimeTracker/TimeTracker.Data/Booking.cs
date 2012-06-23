@@ -12,13 +12,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimeTracker.Data
 {
-    public partial class Booking : BaseEntity
+    [Table("Booking")]
+    public class Booking : BaseEntity
     {
-        #region Navigation Properties
-    
+        private User _user;
+        private Project _project;
+
         public virtual User User
         {
             get { return _user; }
@@ -28,11 +31,10 @@ namespace TimeTracker.Data
                 {
                     var previousValue = _user;
                     _user = value;
-                    FixupUser(previousValue);
+                    //FixupUser(previousValue);
                 }
             }
         }
-        private User _user;
     
         public virtual Project Project
         {
@@ -43,47 +45,11 @@ namespace TimeTracker.Data
                 {
                     var previousValue = _project;
                     _project = value;
-                    FixupProject(previousValue);
+                    //FixupProject(previousValue);
                 }
             }
         }
-        private Project _project;
+        
 
-        #endregion
-        #region Association Fixup
-    
-        private void FixupUser(User previousValue)
-        {
-            if (previousValue != null && previousValue.Bookings.Contains(this))
-            {
-                previousValue.Bookings.Remove(this);
-            }
-    
-            if (User != null)
-            {
-                if (!User.Bookings.Contains(this))
-                {
-                    User.Bookings.Add(this);
-                }
-            }
-        }
-    
-        private void FixupProject(Project previousValue)
-        {
-            if (previousValue != null && previousValue.Bookings.Contains(this))
-            {
-                previousValue.Bookings.Remove(this);
-            }
-    
-            if (Project != null)
-            {
-                if (!Project.Bookings.Contains(this))
-                {
-                    Project.Bookings.Add(this);
-                }
-            }
-        }
-
-        #endregion
     }
 }

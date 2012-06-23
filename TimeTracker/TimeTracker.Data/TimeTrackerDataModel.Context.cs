@@ -42,11 +42,23 @@ namespace TimeTracker.Data
     
         #region ObjectSet Properties
     
-        public ObjectSet<BaseEntity> BaseEntities
+        public ObjectSet<User> Users
         {
-            get { return _baseEntities  ?? (_baseEntities = CreateObjectSet<BaseEntity>("BaseEntities")); }
+            get { return _users  ?? (_users = CreateObjectSet<User>("Users")); }
         }
-        private ObjectSet<BaseEntity> _baseEntities;
+        private ObjectSet<User> _users;
+    
+        public ObjectSet<Booking> Bookings
+        {
+            get { return _bookings  ?? (_bookings = CreateObjectSet<Booking>("Bookings")); }
+        }
+        private ObjectSet<Booking> _bookings;
+    
+        public ObjectSet<Project> Projects
+        {
+            get { return _projects  ?? (_projects = CreateObjectSet<Project>("Projects")); }
+        }
+        private ObjectSet<Project> _projects;
 
         #endregion
     }

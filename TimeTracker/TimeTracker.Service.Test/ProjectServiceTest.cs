@@ -5,6 +5,7 @@ using System.Linq;
 using Castle.Windsor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TimeTracker.Data;
+using TimeTracker.Data.TimeTracker.Data;
 
 namespace TimeTracker.Service.Test
 {
@@ -23,7 +24,7 @@ namespace TimeTracker.Service.Test
         [TestMethod]
         public void GetByIdTest()
         {
-            var modelContainer = new TimeTrackerDataModelContainer();
+            var modelContainer = new TimeTrackerContext();
             var service = new ProjectService(modelContainer);
             var project = service.GetById(2);
             Assert.IsNotNull(project);
@@ -36,5 +37,18 @@ namespace TimeTracker.Service.Test
             var project = service.GetById(2);
             Assert.IsNotNull(project);
         }
+
+        [TestMethod]
+        public void SaveProjectTest()
+        {
+            var service = _container.Resolve<IService<Project>>();
+            var project = new Project { Number = "12345", Name = "Bla Blup"};
+            service.Save(project);
+
+            Assert.IsNotNull(project);
+            Assert.IsTrue(project.Id>0);
+        }
+
+
     }
 }

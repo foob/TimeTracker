@@ -12,13 +12,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimeTracker.Data
 {
     public partial class BaseEntity
     {
         #region Primitive Properties
-    
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id
         {
             get;

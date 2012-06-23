@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Castle.Windsor;
 using TimeTracker.Data;
+using TimeTracker.Data.TimeTracker.Data;
 
 namespace TimeTracker.Service.Test
 {
@@ -24,7 +25,7 @@ namespace TimeTracker.Service.Test
         [TestMethod]
         public void GetByIdTest()
         {
-            var modelContainer = new TimeTrackerDataModelContainer();
+            var modelContainer = new TimeTrackerContext();
             var service = new BookingService(modelContainer);
             var booking = service.GetById(1);
             Assert.IsNotNull(booking);
