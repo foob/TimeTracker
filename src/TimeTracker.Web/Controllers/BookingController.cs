@@ -14,8 +14,6 @@ namespace TimeTracker.Web.Controllers
         {
         }
 
-        //public BookingController() : base(Repository.Default){}
-
         public ActionResult Index(Guid projectId)
         {
             ViewBag.Project = Repository.GetProject(projectId);
@@ -23,16 +21,10 @@ namespace TimeTracker.Web.Controllers
             return View(Repository.GetBookingsByProject(projectId));
         }
         
-        //
-        // GET: /Booking/Create
-
         public ActionResult Create(Guid projectId)
         {
             return View(Booking.Create(projectId));
         }
-
-        //
-        // POST: /Booking/Create
 
         [HttpPost]
         public ActionResult Create(Booking booking)
@@ -42,16 +34,10 @@ namespace TimeTracker.Web.Controllers
             return RedirectToAction("Index", new { projectId = booking.ProjectId });
         }
 
-        //
-        // GET: /Booking/Edit/5
-
         public ActionResult Edit(Guid id)
         {
             return View(Repository.GetBooking(id));
         }
-
-        //
-        // POST: /Booking/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Booking booking)
@@ -60,16 +46,10 @@ namespace TimeTracker.Web.Controllers
             return RedirectToAction("Index", new { projectId = booking.ProjectId });
         }
 
-        //
-        // GET: /Booking/Delete/5
-
         public ActionResult Delete(Guid id)
         {
             return View(Repository.GetBooking(id));
         }
-
-        //
-        // POST: /Booking/Delete/5
 
         [HttpPost]
         public ActionResult Delete(Booking booking)
